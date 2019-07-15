@@ -38,6 +38,21 @@ const App = (props) => {
     })
   };
 
+  const detailsChangedHandler = (event) => {
+    debugger;
+    let changedValueIndex = todoListState.todos.findIndex(x => x.details.match(event.target.defaultValue));
+    if (changedValueIndex !== -1) {
+      setTodoListState({
+        todos: [...todoListState.todos.map((todo, index) => {
+          if (index === changedValueIndex)
+            todo.details = event.target.value;
+
+          return todo;
+        })]
+      });
+    }
+  };
+
   return (
     <div>
       <div className="jumbotron">
@@ -46,26 +61,27 @@ const App = (props) => {
         </h1>
       </div>
       <div class="container-fluid">
-      <div class="btn-group">
-        <button className="btn btn-primary" onClick={reverseTodoListHandler}>Reverse Todo List</button>
-        <button className="btn btn-success" onClick={addTodoHandler}>New Todo</button>
-      </div>
-      <hr></hr>
-      <ul className="list-group">
-        {
-          todoListState.todos.map(
-            (x, i) =>
-              <li className="list-group-item" key={x.id}>
-                <Todo
-                  id={x.id}
-                  details={x.details}
-                  todoIndex={i}
-                  parentRemoveTodo={removeTodo}>
-                </Todo>
-              </li>
-          )
-        }
-      </ul>
+        <div class="btn-group">
+          <button className="btn btn-primary" onClick={reverseTodoListHandler}>Reverse Todo List</button>
+          <button className="btn btn-success" onClick={addTodoHandler}>New Todo</button>
+        </div>
+        <hr></hr>
+        <ul className="list-group">
+          {
+            todoListState.todos.map(
+              (x, i) =>
+                <li className="list-group-item" key={x.id}>
+                  <Todo
+                    id={x.id}
+                    details={x.details}
+                    todoIndex={i}
+                    parentRemoveTodo={removeTodo}
+                    parentDetailsChange={detailsChangedHandler}>
+                  </Todo>
+                </li>
+            )
+          }
+        </ul>
       </div>
     </div>
   )
