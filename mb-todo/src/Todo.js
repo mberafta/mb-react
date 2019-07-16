@@ -21,15 +21,15 @@ class Todo extends React.Component {
     render() {
         return (
             <div>
-                <input type="text" onChange={this.detailsChange} value={this.props.details} />
+                <div className="form-group">
+                    <label><strong>Détails</strong></label>
+                    <input className="form-control" type="text" onChange={this.detailsChange} value={this.props.details} />
+                </div>
                 <p>
                     <span className="badge badge-info">
                         {this.props.todoIndex + 1}
                     </span>
-                    &nbsp;
-                    <strong>
-                        {this.props.details}
-                    </strong>
+                    &nbsp; {this.props.details}
                     <button className="btn btn-sm btn-danger float-right" onClick={this.doParentRemove}>
                         X
                     </button>
