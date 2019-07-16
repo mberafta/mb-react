@@ -15,7 +15,7 @@ class Todo extends React.Component {
 
     detailsChange(event) {
         debugger;
-        this.props.parentDetailsChange(event);
+        this.props.parentDetailsChange(event, this.props.id);
     }
 
     render() {

@@ -38,9 +38,9 @@ const App = (props) => {
     })
   };
 
-  const detailsChangedHandler = (event) => {
+  const detailsChangedHandler = (event, id) => {
     debugger;
-    let changedValueIndex = todoListState.todos.findIndex(x => x.details.match(event.target.defaultValue));
+    let changedValueIndex = todoListState.todos.findIndex(x => x.id === id);
     if (changedValueIndex !== -1) {
       setTodoListState({
         todos: [...todoListState.todos.map((todo, index) => {
