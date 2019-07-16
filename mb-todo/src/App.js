@@ -5,6 +5,9 @@ import Todo from './Todo';
 
 const App = (props) => {
 
+  /**
+   * Hook liant la liste de todo avec son modificateur d'état.
+   */
   let [todoListState, setTodoListState] = useState(
     {
       todos: [
@@ -15,12 +18,18 @@ const App = (props) => {
     }
   );
 
+  /**
+   * Méthode perméttant d'inverser la liste de todos.
+   */
   const reverseTodoListHandler = () => {
     setTodoListState({
       todos: [...todoListState.todos].reverse()
     })
   };
 
+  /**
+   * Méthode ajoutant un todo avec un id déterminé par le max des ids actuels.
+   */
   const addTodoHandler = () => {
     debugger;
     let todoIds = [...todoListState.todos.map(todo => todo.id)],
@@ -31,6 +40,10 @@ const App = (props) => {
     })
   };
 
+  /**
+   * Méthode perméttant de supprimer un todo existant.
+   * @param {number} index 
+   */
   const removeTodo = (index) => {
     debugger;
     setTodoListState({
@@ -38,6 +51,11 @@ const App = (props) => {
     })
   };
 
+  /**
+   * Méthode perméttant de gérer l'évènement onChange d'un input pour un todo donné.
+   * @param {object} event 
+   * @param {number} id 
+   */
   const detailsChangedHandler = (event, id) => {
     debugger;
     let changedValueIndex = todoListState.todos.findIndex(x => x.id === id);
